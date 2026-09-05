@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AXION — AI video &amp; digital agency | Ukraine</title>
+<meta name="description" content="AXION is a Ukrainian digital agency making AI-generated video, ads and social media content. Reels, TikTok and Shorts delivered in 2–3 days.">
+<meta name="theme-color" content="#0C0D10">
+
+<!-- ЗАМІНІТЬ example.com на ваш реальний домен у 4 місцях нижче -->
+<link rel="canonical" href="https://example.com/">
+<link rel="alternate" hreflang="en" href="https://example.com/?lang=en">
+<link rel="alternate" hreflang="uk" href="https://example.com/?lang=uk">
+<link rel="alternate" hreflang="x-default" href="https://example.com/">
+
+<meta property="og:title" content="AXION — AI video &amp; digital agency">
+<meta property="og:description" content="AI-generated video, ads and social media content. Based in Ukraine, working worldwide.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<!-- Картинка для превʼю в месенджерах: 1200×630 px, JPG, покладіть поруч з index.html -->
+<meta property="og:image" content="https://example.com/og-cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230C0D10'/%3E%3Ctext x='16' y='24' font-family='Arial' font-weight='700' font-size='22' fill='%23EEF0F3' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Manrope:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0C0D10;
+    --panel:#111318;
+    --line:#23262D;
+    --line-soft:#191C22;
+    --silver:#EEF0F3;
+    --mist:#878D97;
+    --spark:#B9C9DC;
+    --display:'Unbounded','Trebuchet MS',sans-serif;
+    --body:'Manrope','Segoe UI',system-ui,sans-serif;
+    --mono:'JetBrains Mono','Consolas',monospace;
+    --gutter:clamp(20px,5vw,72px);
+    --maxw:1240px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--ink);
+    color:var(--silver);
+    font-family:var(--body);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  :focus-visible{outline:2px solid var(--spark);outline-offset:3px;border-radius:2px}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gutter)}
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--mist);
+  }
+  .eyebrow span{color:var(--spark)}
+
+  /* ---------- header ---------- */
+  .site-head{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    backdrop-filter:blur(14px);
+    background:rgba(12,13,16,.62);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s ease,background .3s ease;
+  }
+  .site-head.is-stuck{border-bottom-color:var(--line-soft);background:rgba(12,13,16,.86)}
+  .site-head .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:20px}
+  .brand{font-family:var(--display);font-weight:800;font-size:17px;letter-spacing:.16em}
+  .head-right{display:flex;align-items:center;gap:clamp(14px,2.4vw,26px)}
+  .nav{display:flex;gap:clamp(12px,1.8vw,26px);font-size:13.5px;color:var(--mist)}
+  .nav a{transition:color .2s ease;white-space:nowrap}
+  .nav a:hover{color:var(--silver)}
+  .nav a[data-nav="career"]{color:var(--spark)}
+  @media(max-width:900px){.nav{font-size:12.5px}}
+  @media(max-width:780px){.nav a[data-nav="services"]{display:none}}
+  @media(max-width:640px){.nav a[data-nav="packages"]{display:none}}
+  @media(max-width:540px){.nav a[data-nav="process"]{display:none}}
+  @media(max-width:440px){.nav a[data-nav="work"]{display:none}}
+
+  /* ---------- language switch ---------- */
+  .lang{
+    display:inline-flex;flex:none;
+    border:1px solid var(--line);
+    border-radius:2px;
+    overflow:hidden;
+  }
+  .lang button{
+    font-family:var(--mono);
+    font-size:11px;letter-spacing:.12em;
+    background:transparent;border:0;color:var(--mist);
+    padding:6px 10px;cursor:pointer;line-height:1;
+    transition:background .2s ease,color .2s ease;
+  }
+  .lang button:hover{color:var(--silver)}
+  .lang button[aria-pressed="true"]{background:var(--silver);color:var(--ink)}
+  .lang button + button{border-left:1px solid var(--line)}
+
+  /* ---------- hero ---------- */
+  .hero{
+    min-height:100svh;
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+    align-items:center;
+    gap:clamp(16px,4vw,56px);
+    padding-top:68px;
+    position:relative;
+  }
+  #particles{width:100%;height:min(60vh,520px);display:block}
+  .hero-copy{padding-block:40px}
+  .hero h1{
+    font-family:var(--display);
+    font-weight:800;
+    font-size:clamp(44px,7.4vw,104px);
+    line-height:.94;
+    letter-spacing:.02em;
+    margin:18px 0 0;
+  }
+  .hero .lede{
+    margin-top:22px;
+    font-size:clamp(15px,1.3vw,18px);
+    color:var(--mist);
+    max-width:44ch;
+  }
+  .hero .lede b{color:var(--silver);font-weight:500}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+
+  /* AI-мітка */
+  .ai-badge{
+    display:inline-flex;align-items:center;gap:9px;
+    margin-top:22px;
+    padding:7px 13px;
+    border:1px solid var(--line);
+    border-radius:2px;
+    background:rgba(185,201,220,.05);
+    font-family:var(--mono);
+    font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--spark);
+  }
+  .ai-badge .dot{
+    width:6px;height:6px;flex:none;
+    background:var(--spark);transform:rotate(45deg);
+  }
+
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    height:46px;padding:0 22px;
+    border:1px solid var(--line);
+    border-radius:2px;
+    font-size:14px;font-weight:500;
+    transition:border-color .2s ease,background .2s ease,color .2s ease,transform .2s ease;
+  }
+  .btn:hover{transform:translateY(-1px)}
+  .btn-primary{background:var(--silver);color:var(--ink);border-color:var(--silver);font-weight:700}
+  .btn-primary:hover{background:#fff;border-color:#fff}
+  .btn-ghost:hover{border-color:var(--spark);color:var(--spark)}
+
+  @media(max-width:900px){
+    .hero{grid-template-columns:1fr;min-height:auto;padding-top:96px;padding-bottom:24px}
+    .hero-figure{order:-1}
+    #particles{height:34vh;max-height:280px}
+    .hero-copy{padding-block:8px 24px}
+  }
+
+  /* ---------- sections ---------- */
+  section{padding-block:clamp(72px,9vw,128px)}
+  .sec-head{
+    display:flex;align-items:baseline;justify-content:space-between;
+    gap:20px;flex-wrap:wrap;
+    padding-bottom:22px;
+    border-bottom:1px solid var(--line-soft);
+    margin-bottom:clamp(32px,4vw,54px);
+  }
+  .sec-head h2{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:clamp(24px,3.4vw,38px);
+    letter-spacing:.01em;
+    line-height:1.15;
+  }
+  .sec-head p{color:var(--mist);font-size:14px;max-width:38ch}
+
+  /* ---------- cards / packages ---------- */
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:900px){.tiers{grid-template-columns:1fr}}
+  .tier{
+    background:var(--panel);
+    border:1px solid var(--line-soft);
+    border-radius:3px;
+    padding:30px 26px 26px;
+    display:flex;flex-direction:column;
+    transition:border-color .25s ease,transform .25s ease;
+  }
+  .tier:hover{border-color:var(--line);transform:translateY(-2px)}
+  .tier--lead{border-color:var(--line);background:linear-gradient(180deg,#151920 0%,var(--panel) 60%)}
+  .tier h3{font-family:var(--display);font-weight:600;font-size:19px;margin-bottom:8px}
+  .tier .sub{color:var(--mist);font-size:13.5px;min-height:42px}
+  .tier ul{list-style:none;margin:22px 0 26px;display:grid;gap:11px;font-size:14px;color:#C6CBD3}
+  .tier li{display:flex;gap:11px;align-items:flex-start;line-height:1.45}
+  .tier li::before{
+    content:"";flex:none;width:5px;height:5px;margin-top:8px;
+    background:var(--spark);transform:rotate(45deg);opacity:.85;
+  }
+  .tier .btn{margin-top:auto;justify-content:center}
+  .note{margin-top:18px;font-size:12.5px;color:var(--mist);font-family:var(--mono);line-height:1.7}
+
+  /* ---------- process ---------- */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media(max-width:1000px){.steps{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.steps{grid-template-columns:1fr}}
+  .step{
+    border:1px solid var(--line-soft);
+    border-radius:3px;
+    padding:26px 24px 24px;
+    background:var(--panel);
+    transition:border-color .25s ease;
+  }
+  .step:hover{border-color:var(--line)}
+  .step .num{
+    font-family:var(--mono);font-size:11px;letter-spacing:.2em;
+    color:var(--spark);display:block;margin-bottom:16px;
+  }
+  .step h3{font-family:var(--display);font-weight:600;font-size:17px;margin-bottom:9px}
+  .step p{color:var(--mist);font-size:13.5px;line-height:1.55}
+
+  .disclose{
+    margin-top:22px;
+    border-left:2px solid var(--spark);
+    padding:18px 0 18px 20px;
+    font-size:14.5px;
+    color:#C6CBD3;
+    max-width:78ch;
+    line-height:1.65;
+  }
+  .disclose b{color:var(--silver);font-weight:700}
+
+  /* ---------- career ---------- */
+  .career-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:clamp(24px,4vw,54px);
+    align-items:start;
+  }
+  @media(max-width:860px){.career-grid{grid-template-columns:1fr}}
+  .career-copy p{color:#C6CBD3;font-size:15px;line-height:1.7;max-width:52ch}
+  .career-copy p + p{margin-top:14px}
+  .career-copy .btn{margin-top:28px}
+  .roles{list-style:none;display:grid;gap:10px}
+  .role{
+    border:1px solid var(--line-soft);
+    border-radius:3px;
+    background:var(--panel);
+    padding:18px 20px;
+    transition:border-color .25s ease;
+  }
+  .role:hover{border-color:var(--line)}
+  .role b{
+    display:block;
+    font-family:var(--display);font-weight:600;font-size:15.5px;
+    margin-bottom:5px;
+  }
+  .role span{color:var(--mist);font-size:13.5px;line-height:1.5}
+
+  /* ---------- portfolio ---------- */
+  .reels{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:start}
+  .reel{
+    position:relative;
+    aspect-ratio:9/16;                 /* вертикальний за замовчуванням */
+    background:var(--panel);
+    border:1px solid var(--line-soft);
+    border-radius:3px;
+    overflow:hidden;
+    transition:border-color .25s ease;
+  }
+  .reel--wide{grid-column:1/-1;aspect-ratio:16/9;order:-1}
+  @media(max-width:760px){
+    .reels{grid-template-columns:repeat(2,1fr)}
+  }
+  .reel:hover{border-color:var(--line)}
+  .reel video,.reel iframe{
+    position:absolute;inset:0;width:100%;height:100%;
+    border:0;object-fit:cover;background:#000;display:block;
+  }
+
+  .reel-cover{
+    position:absolute;inset:0;z-index:2;
+    border:0;padding:0;margin:0;
+    background:transparent;
+    cursor:pointer;
+    display:grid;place-items:center;
+    transition:opacity .35s ease,visibility .35s ease;
+  }
+  .reel.is-playing .reel-cover{opacity:0;visibility:hidden}
+  .reel-cover::before{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(12,13,16,.15) 0%,rgba(12,13,16,.72) 100%);
+  }
+  .reel-cover .play{
+    position:relative;
+    width:54px;height:54px;
+    border:1px solid rgba(238,240,243,.55);
+    border-radius:50%;
+    display:grid;place-items:center;
+    background:rgba(12,13,16,.35);
+    backdrop-filter:blur(3px);
+    transition:border-color .25s ease,background .25s ease,transform .25s ease;
+  }
+  .reel-cover:hover .play{border-color:#fff;background:rgba(12,13,16,.6);transform:scale(1.06)}
+  .reel-cover .play::after{
+    content:"";width:0;height:0;margin-left:4px;
+    border-left:12px solid var(--silver);
+    border-top:8px solid transparent;
+    border-bottom:8px solid transparent;
+  }
+  .reel-meta{
+    position:absolute;left:14px;right:14px;bottom:12px;z-index:3;
+    font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+    color:var(--mist);text-transform:uppercase;
+    pointer-events:none;
+    transition:opacity .3s ease;
+  }
+  .reel.is-playing .reel-meta{opacity:0}
+  .reel-meta b{color:var(--silver);font-weight:400}
+
+  @media(prefers-reduced-motion:reduce){
+    .reel-cover:hover .play{transform:none}
+  }
+
+  /* ---------- faq ---------- */
+  .faq-list{display:grid;gap:0;border-top:1px solid var(--line-soft)}
+  .faq-item{border-bottom:1px solid var(--line-soft)}
+  .faq-item summary{
+    list-style:none;cursor:pointer;
+    padding:22px 40px 22px 0;
+    position:relative;
+    font-size:16px;font-weight:500;
+    transition:color .2s ease;
+  }
+  .faq-item summary::-webkit-details-marker{display:none}
+  .faq-item summary:hover{color:var(--spark)}
+  .faq-item summary::after{
+    content:"";position:absolute;right:6px;top:50%;
+    width:9px;height:9px;
+    border-right:1px solid var(--mist);
+    border-bottom:1px solid var(--mist);
+    transform:translateY(-70%) rotate(45deg);
+    transition:transform .25s ease,border-color .2s ease;
+  }
+  .faq-item[open] summary::after{transform:translateY(-20%) rotate(-135deg);border-color:var(--spark)}
+  .faq-item .answer{
+    padding:0 0 24px;
+    color:var(--mist);font-size:14.5px;max-width:72ch;line-height:1.65;
+  }
+
+  /* ---------- contact ---------- */
+  .contact{border-top:1px solid var(--line-soft)}
+  .contact-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(24px,5vw,64px);align-items:start}
+  @media(max-width:860px){.contact-grid{grid-template-columns:1fr}}
+  .contact h2{
+    font-family:var(--display);font-weight:800;
+    font-size:clamp(30px,5vw,60px);line-height:1.02;letter-spacing:.01em;
+  }
+  .contact .mail{
+    display:inline-block;margin-top:26px;
+    font-family:var(--mono);font-size:clamp(15px,2vw,21px);
+    color:var(--spark);
+    border-bottom:1px solid rgba(185,201,220,.32);
+    padding-bottom:3px;
+    transition:border-color .2s ease,color .2s ease;
+    word-break:break-all;
+  }
+  .contact .mail:hover{color:#fff;border-color:#fff}
+  .info{display:grid;gap:22px;padding-top:10px}
+  .info div{border-left:1px solid var(--line);padding-left:16px}
+  .info dt{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mist);margin-bottom:6px}
+  .info dd{font-size:15px}
+  .info dd a{transition:color .2s ease}
+  .info dd a:hover{color:var(--spark)}
+
+  /* ---------- footer ---------- */
+  footer{
+    border-top:1px solid var(--line-soft);
+    padding-block:26px;
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    font-family:var(--mono);font-size:11.5px;color:var(--mist);
+    letter-spacing:.08em;
+  }
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+    .btn:hover,.tier:hover{transform:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-head" id="head">
+  <div class="wrap">
+    <a class="brand" href="#top">AXION</a>
+    <div class="head-right">
+      <nav class="nav">
+        <a href="#services" data-nav="services" data-i18n="nav.services">Services</a>
+        <a href="#process" data-nav="process" data-i18n="nav.process">Process</a>
+        <a href="#packages" data-nav="packages" data-i18n="nav.packages">Packages</a>
+        <a href="#work" data-nav="work" data-i18n="nav.work">Work</a>
+        <a href="#career" data-nav="career" data-i18n="nav.career">Career</a>
+        <a href="#contact" data-nav="contact" data-i18n="nav.contact">Contact</a>
+      </nav>
+      <div class="lang" role="group" data-i18n-aria="lang.group" aria-label="Site language">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="uk" aria-pressed="false">UA</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero wrap">
+    <div class="hero-copy">
+      <p class="eyebrow" data-i18n="hero.eyebrow">Digital agency <span>·</span> Ivano-Frankivsk, Ukraine</p>
+      <h1>AXION</h1>
+      <p class="lede" data-i18n="hero.lede">We build video from scratch: <b>idea, script, AI generation, edit, sound</b>. Ads, social media and presentation videos that get noticed in the first second.</p>
+      <p class="ai-badge"><span class="dot"></span><span data-i18n="hero.ai">Visuals made with generative AI</span></p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#contact" data-i18n="hero.cta1">Order a video</a>
+        <a class="btn btn-ghost" href="#work" data-i18n="hero.cta2">See our work</a>
+      </div>
+    </div>
+    <div class="hero-figure">
+      <canvas id="particles" data-i18n-aria="hero.canvas" aria-label="AXION logo: the letter A dissolving into particles" role="img"></canvas>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="wrap">
+    <div class="sec-head reveal">
+      <h2 data-i18n="services.h2">What we do</h2>
+      <p data-i18n="services.sub">From a single video to ongoing content for every platform.</p>
+    </div>
+    <div class="tiers">
+      <article class="tier reveal">
+        <h3 data-i18n="services.c1.h">Video &amp; ads</h3>
+        <p class="sub" data-i18n="services.c1.p">Commercials, promos, announcements, video for your website and marketplaces.</p>
+      </article>
+      <article class="tier reveal">
+        <h3 data-i18n="services.c2.h">Social media content</h3>
+        <p class="sub" data-i18n="services.c2.p">Vertical videos for Reels, TikTok and Shorts — in series, in one consistent style.</p>
+      </article>
+      <article class="tier reveal">
+        <h3 data-i18n="services.c3.h">Concept &amp; script</h3>
+        <p class="sub" data-i18n="services.c3.p">We work out what to show and say: concept, copy, storyboard, voice-over.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- PROCESS / AI -->
+  <section id="process" class="wrap">
+    <div class="sec-head reveal">
+      <h2 data-i18n="process.h2">How we make it</h2>
+      <p data-i18n="process.sub">Full transparency: most of the visuals in our videos are generated by AI, not filmed with a camera.</p>
+    </div>
+    <div class="steps">
+      <article class="step reveal">
+        <span class="num">01</span>
+        <h3 data-i18n="process.s1.h">Brief &amp; script</h3>
+        <p data-i18n="process.s1.p">We dig into the task, the audience and the message, then write the script and storyboard.</p>
+      </article>
+      <article class="step reveal">
+        <span class="num">02</span>
+        <h3 data-i18n="process.s2.h">AI generation</h3>
+        <p data-i18n="process.s2.p">Frames, characters and scenes are created in generative models, tuned to the style you need.</p>
+      </article>
+      <article class="step reveal">
+        <span class="num">03</span>
+        <h3 data-i18n="process.s3.h">Edit &amp; sound</h3>
+        <p data-i18n="process.s3.p">We assemble the timeline and add graphics, subtitles, music and voice-over.</p>
+      </article>
+      <article class="step reveal">
+        <span class="num">04</span>
+        <h3 data-i18n="process.s4.h">Revisions &amp; delivery</h3>
+        <p data-i18n="process.s4.p">We review together, apply revisions and hand over the files in every format you need.</p>
+      </article>
+    </div>
+    <p class="disclose reveal" data-i18n="process.disclose">What this means for you: <b>no film crew, locations or actors</b> — so it's faster and cheaper. We never pass generated footage off as real filming, and we always tell you what was generated. If a project needs real footage or your own materials, we build them into the video.</p>
+  </section>
+
+  <!-- PACKAGES (без цін) -->
+  <section id="packages" class="wrap">
+    <div class="sec-head reveal">
+      <h2 data-i18n="packages.h2">Packages</h2>
+      <p data-i18n="packages.sub">Pick the format that fits — we quote after a short brief.</p>
+    </div>
+    <div class="tiers">
+
+      <article class="tier reveal">
+        <h3 data-i18n="packages.t1.h">Single video</h3>
+        <p class="sub" data-i18n="packages.t1.p">One video for one specific task.</p>
+        <ul>
+          <li data-i18n="packages.t1.i1">Format built around your task</li>
+          <li data-i18n="packages.t1.i2">Vertical or horizontal</li>
+          <li data-i18n="packages.t1.i3">Edit, subtitles, music</li>
+          <li data-i18n="packages.t1.i4">1 round of revisions</li>
+          <li data-i18n="packages.t1.i5">Ready in 2–3 days</li>
+        </ul>
+        <a class="btn btn-ghost" href="#contact" data-i18n="packages.t1.btn">Discuss it</a>
+      </article>
+
+      <article class="tier tier--lead reveal">
+        <h3 data-i18n="packages.t2.h">Series</h3>
+        <p class="sub" data-i18n="packages.t2.p">A monthly pack of videos in one consistent style.</p>
+        <ul>
+          <li data-i18n="packages.t2.i1">5 videos</li>
+          <li data-i18n="packages.t2.i2">Shared visual line and templates</li>
+          <li data-i18n="packages.t2.i3">Adapted for Reels, TikTok, Shorts</li>
+          <li data-i18n="packages.t2.i4">2 rounds of revisions</li>
+          <li data-i18n="packages.t2.i5">A content plan for the month</li>
+        </ul>
+        <a class="btn btn-primary" href="#contact" data-i18n="packages.t2.btn">Order the pack</a>
+      </article>
+
+      <article class="tier reveal">
+        <h3 data-i18n="packages.t3.h">Full service</h3>
+        <p class="sub" data-i18n="packages.t3.p">End-to-end support for a project or a brand.</p>
+        <ul>
+          <li data-i18n="packages.t3.i1">Concept, script, AI generation or filming</li>
+          <li data-i18n="packages.t3.i2">Voice-over and sound design</li>
+          <li data-i18n="packages.t3.i3">Complex graphics and animation</li>
+          <li data-i18n="packages.t3.i4">Unlimited revisions within a stage</li>
+          <li data-i18n="packages.t3.i5">Timeline built around your launch</li>
+        </ul>
+        <a class="btn btn-ghost" href="#contact" data-i18n="packages.t3.btn">Get a quote</a>
+      </article>
+
+    </div>
+    <p class="note" data-i18n="packages.note">Every project is quoted individually — send a short brief and we'll come back with a plan, a timeline and a number. Payment: 50% upfront, 50% on approval.</p>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="work" class="wrap">
+    <div class="sec-head reveal">
+      <h2 data-i18n="work.h2">Work</h2>
+      <p data-i18n="work.sub">A few recent videos.</p>
+    </div>
+    <div class="reels">
+
+      <!-- Файли лежать у папці video/ поруч з index.html.
+           Вертикальні ролики — class="reel".
+           Горизонтальний — class="reel reel--wide" (широка картка 16:9 нагорі).
+           Щоб додати ще ролик — скопіюйте будь-який блок <article> і змініть шляхи.
+
+           ОБКЛАДИНКИ (poster):
+           вертикальні — 1080×1920 JPG, горизонтальні — 1920×1080 JPG,
+           до ~250 КБ, назва файлу літера в літеру як у poster="..." (регістр важливий!). -->
+
+      <article class="reel reveal">
+        <video src="video/reel-1.mp4" poster="video/reel-1.jpg" preload="none" playsinline></video>
+        <button class="reel-cover" type="button" data-i18n-aria="work.play1" aria-label="Play: talking avatar ad"><span class="play"></span></button>
+        <p class="reel-meta" data-i18n="work.meta1"><b>Talking avatar</b> · Ad creative</p>
+      </article>
+
+      <article class="reel reveal">
+        <video src="video/reel-2.mp4" poster="video/reel-2.jpg" preload="none" playsinline></video>
+        <button class="reel-cover" type="button" data-i18n-aria="work.play2" aria-label="Play: animated short"><span class="play"></span></button>
+        <p class="reel-meta" data-i18n="work.meta2"><b>Animated short</b> · Cartoon</p>
+      </article>
+
+      <article class="reel reveal">
+        <video src="video/reel-3.mp4" poster="video/reel-3.jpg" preload="none" playsinline></video>
+        <button class="reel-cover" type="button" data-i18n-aria="work.play3" aria-label="Play: cartoon style ad"><span class="play"></span></button>
+        <p class="reel-meta" data-i18n="work.meta3"><b>Cartoon style</b> · Ad creative</p>
+      </article>
+
+      <article class="reel reel--wide reveal">
+        <video src="video/reel-4.mp4" poster="video/reel-4.jpg" preload="none" playsinline></video>
+        <button class="reel-cover" type="button" data-i18n-aria="work.play4" aria-label="Play: Nike concept spot"><span class="play"></span></button>
+        <p class="reel-meta" data-i18n="work.meta4"><b>Nike</b> · Concept spot</p>
+      </article>
+
+    </div>
+    <p class="note reveal" data-i18n="work.note">Every video on this page was created with generative AI.</p>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="wrap">
+    <div class="sec-head reveal">
+      <h2 data-i18n="faq.h2">FAQ</h2>
+      <p data-i18n="faq.sub">The things people ask us most.</p>
+    </div>
+    <div class="faq-list reveal">
+      <details class="faq-item">
+        <summary data-i18n="faq.q1">Do you film with a camera?</summary>
+        <p class="answer" data-i18n="faq.a1">Mostly no. The core visuals are generated with AI. If you need real footage, we work with your materials or arrange a shoot separately.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="faq.q2">Can I run these videos as ads?</summary>
+        <p class="answer" data-i18n="faq.a2">Yes. We deliver files in formats for Meta, TikTok, YouTube and Google Ads. If a platform requires an AI-content label, we'll show you how to add it.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="faq.q3">How long does a video take?</summary>
+        <p class="answer" data-i18n="faq.a3">A single video takes 2–3 days from script approval. A series of 5 takes 7–10 days.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="faq.q4">Who owns the video?</summary>
+        <p class="answer" data-i18n="faq.a4">You do. After full payment you get the source files and can use them without restrictions.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- CAREER -->
+  <section id="career" class="wrap">
+    <div class="sec-head reveal">
+      <h2 data-i18n="career.h2">Career</h2>
+      <p data-i18n="career.sub">We're a small team and we grow with the people we like working with.</p>
+    </div>
+    <div class="career-grid">
+      <div class="career-copy reveal">
+        <p data-i18n="career.p1">If you're a specialist who makes things move — <b>get in touch</b>. We work remotely, on a project basis or on an ongoing collaboration, and we care far more about what you've made than about your CV.</p>
+        <p data-i18n="career.p2">Send a short intro, a link to your work or showreel, and the kind of tasks you enjoy. We read every message and reply to the ones that fit.</p>
+        <p data-i18n="career.p3">Don't see your role on the list? Write anyway — if you can do something we can't, we'll find a project for it.</p>
+        <a class="btn btn-primary" id="careerMail" href="mailto:vi.aicreation@gmail.com?subject=Career%20at%20AXION" data-i18n="career.btn">Send your portfolio</a>
+      </div>
+      <ul class="roles reveal">
+        <li class="role">
+          <b data-i18n="career.r1.h">AI video artist</b>
+          <span data-i18n="career.r1.p">You generate frames and scenes in Higgsfield, Runway, Veo, Midjourney or similar, and you know how to keep a character consistent.</span>
+        </li>
+        <li class="role">
+          <b data-i18n="career.r2.h">Editor / motion designer</b>
+          <span data-i18n="career.r2.p">Premiere, After Effects or DaVinci. Rhythm, subtitles, sound design, clean graphics.</span>
+        </li>
+        <li class="role">
+          <b data-i18n="career.r3.h">Scriptwriter / creative</b>
+          <span data-i18n="career.r3.p">You turn a brief into an idea and a script that holds attention for the first three seconds.</span>
+        </li>
+        <li class="role">
+          <b data-i18n="career.r4.h">Sound &amp; voice-over</b>
+          <span data-i18n="career.r4.p">Voice recording or AI voice, music selection, mixing and mastering for social platforms.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="wrap contact-grid">
+      <div class="reveal">
+        <p class="eyebrow" data-i18n="contact.eyebrow">Get in touch</p>
+        <h2 data-i18n="contact.h2">Tell us about your task — we'll come back with an idea and a price.</h2>
+        <a class="mail" id="mailLink" href="mailto:vi.aicreation@gmail.com?subject=Request%20from%20the%20AXION%20website">vi.aicreation@gmail.com</a>
+      </div>
+      <dl class="info reveal">
+        <div>
+          <dt data-i18n="contact.dt1">Email</dt>
+          <dd><a href="mailto:vi.aicreation@gmail.com">vi.aicreation@gmail.com</a></dd>
+        </div>
+        <div>
+          <dt>Telegram</dt>
+          <!-- ЗАМІНІТЬ на ваш нік -->
+          <dd><a href="https://t.me/axion" target="_blank" rel="noopener">@axion</a></dd>
+        </div>
+        <div>
+          <dt data-i18n="contact.dt2">Where we are</dt>
+          <dd data-i18n="contact.dd2">Ivano-Frankivsk, Ukraine</dd>
+        </div>
+        <div>
+          <dt data-i18n="contact.dt3">How we work</dt>
+          <dd data-i18n="contact.dd3">Online, across Ukraine and worldwide</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <span>© <span id="year">2026</span> AXION</span>
+  <span data-i18n="footer.ai">Content created with AI</span>
+  <span data-i18n="footer.city">Ivano-Frankivsk, Ukraine</span>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ProfessionalService",
+  "name":"AXION",
+  "description":"Digital agency making AI-generated video, ads and social media content.",
+  "email":"vi.aicreation@gmail.com",
+  "address":{"@type":"PostalAddress","addressLocality":"Ivano-Frankivsk","addressCountry":"UA"},
+  "areaServed":"Worldwide"
+}
+</script>
+
+<script>
+/* ============================================================
+   МОВИ. Щоб змінити текст — правте рядки у словнику нижче.
+   Ключ у словнику = значення атрибута data-i18n у розмітці.
+   Англійська — мова за замовчуванням.
+   ============================================================ */
+var I18N = {
+  en: {
+    "meta.title":"AXION — AI video & digital agency | Ukraine",
+    "meta.desc":"AXION is a Ukrainian digital agency making AI-generated video, ads and social media content. Reels, TikTok and Shorts delivered in 2–3 days.",
+    "meta.ogtitle":"AXION — AI video & digital agency",
+    "meta.ogdesc":"AI-generated video, ads and social media content. Based in Ukraine, working worldwide.",
+    "meta.oglocale":"en_US",
+    "mail.subject":"Request from the AXION website",
+    "mail.career":"Career at AXION",
+
+    "lang.group":"Site language",
+
+    "nav.services":"Services",
+    "nav.process":"Process",
+    "nav.packages":"Packages",
+    "nav.work":"Work",
+    "nav.career":"Career",
+    "nav.contact":"Contact",
+
+    "hero.eyebrow":"Digital agency <span>·</span> Ivano-Frankivsk, Ukraine",
+    "hero.lede":"We build video from scratch: <b>idea, script, AI generation, edit, sound</b>. Ads, social media and presentation videos that get noticed in the first second.",
+    "hero.ai":"Visuals made with generative AI",
+    "hero.cta1":"Order a video",
+    "hero.cta2":"See our work",
+    "hero.canvas":"AXION logo: the letter A dissolving into particles",
+
+    "services.h2":"What we do",
+    "services.sub":"From a single video to ongoing content for every platform.",
+    "services.c1.h":"Video &amp; ads",
+    "services.c1.p":"Commercials, promos, announcements, video for your website and marketplaces.",
+    "services.c2.h":"Social media content",
+    "services.c2.p":"Vertical videos for Reels, TikTok and Shorts — in series, in one consistent style.",
+    "services.c3.h":"Concept &amp; script",
+    "services.c3.p":"We work out what to show and say: concept, copy, storyboard, voice-over.",
+
+    "process.h2":"How we make it",
+    "process.sub":"Full transparency: most of the visuals in our videos are generated by AI, not filmed with a camera.",
+    "process.s1.h":"Brief &amp; script",
+    "process.s1.p":"We dig into the task, the audience and the message, then write the script and storyboard.",
+    "process.s2.h":"AI generation",
+    "process.s2.p":"Frames, characters and scenes are created in generative models, tuned to the style you need.",
+    "process.s3.h":"Edit &amp; sound",
+    "process.s3.p":"We assemble the timeline and add graphics, subtitles, music and voice-over.",
+    "process.s4.h":"Revisions &amp; delivery",
+    "process.s4.p":"We review together, apply revisions and hand over the files in every format you need.",
+    "process.disclose":"What this means for you: <b>no film crew, locations or actors</b> — so it's faster and cheaper. We never pass generated footage off as real filming, and we always tell you what was generated. If a project needs real footage or your own materials, we build them into the video.",
+
+    "packages.h2":"Packages",
+    "packages.sub":"Pick the format that fits — we quote after a short brief.",
+    "packages.t1.h":"Single video",
+    "packages.t1.p":"One video for one specific task.",
+    "packages.t1.i1":"Format built around your task",
+    "packages.t1.i2":"Vertical or horizontal",
+    "packages.t1.i3":"Edit, subtitles, music",
+    "packages.t1.i4":"1 round of revisions",
+    "packages.t1.i5":"Ready in 2–3 days",
+    "packages.t1.btn":"Discuss it",
+    "packages.t2.h":"Series",
+    "packages.t2.p":"A monthly pack of videos in one consistent style.",
+    "packages.t2.i1":"5 videos",
+    "packages.t2.i2":"Shared visual line and templates",
+    "packages.t2.i3":"Adapted for Reels, TikTok, Shorts",
+    "packages.t2.i4":"2 rounds of revisions",
+    "packages.t2.i5":"A content plan for the month",
+    "packages.t2.btn":"Order the pack",
+    "packages.t3.h":"Full service",
+    "packages.t3.p":"End-to-end support for a project or a brand.",
+    "packages.t3.i1":"Concept, script, AI generation or filming",
+    "packages.t3.i2":"Voice-over and sound design",
+    "packages.t3.i3":"Complex graphics and animation",
+    "packages.t3.i4":"Unlimited revisions within a stage",
+    "packages.t3.i5":"Timeline built around your launch",
+    "packages.t3.btn":"Get a quote",
+    "packages.note":"Every project is quoted individually — send a short brief and we'll come back with a plan, a timeline and a number. Payment: 50% upfront, 50% on approval.",
+
+    "work.h2":"Work",
+    "work.sub":"A few recent videos.",
+    "work.meta1":"<b>Talking avatar</b> · Ad creative",
+    "work.meta2":"<b>Animated short</b> · Cartoon",
+    "work.meta3":"<b>Cartoon style</b> · Ad creative",
+    "work.meta4":"<b>Nike</b> · Concept spot",
+    "work.play1":"Play: talking avatar ad",
+    "work.play2":"Play: animated short",
+    "work.play3":"Play: cartoon style ad",
+    "work.play4":"Play: Nike concept spot",
+    "work.note":"Every video on this page was created with generative AI.",
+
+    "faq.h2":"FAQ",
+    "faq.sub":"The things people ask us most.",
+    "faq.q1":"Do you film with a camera?",
+    "faq.a1":"Mostly no. The core visuals are generated with AI. If you need real footage, we work with your materials or arrange a shoot separately.",
+    "faq.q2":"Can I run these videos as ads?",
+    "faq.a2":"Yes. We deliver files in formats for Meta, TikTok, YouTube and Google Ads. If a platform requires an AI-content label, we'll show you how to add it.",
+    "faq.q3":"How long does a video take?",
+    "faq.a3":"A single video takes 2–3 days from script approval. A series of 5 takes 7–10 days.",
+    "faq.q4":"Who owns the video?",
+    "faq.a4":"You do. After full payment you get the source files and can use them without restrictions.",
+
+    "career.h2":"Career",
+    "career.sub":"We're a small team and we grow with the people we like working with.",
+    "career.p1":"If you're a specialist who makes things move — <b>get in touch</b>. We work remotely, on a project basis or on an ongoing collaboration, and we care far more about what you've made than about your CV.",
+    "career.p2":"Send a short intro, a link to your work or showreel, and the kind of tasks you enjoy. We read every message and reply to the ones that fit.",
+    "career.p3":"Don't see your role on the list? Write anyway — if you can do something we can't, we'll find a project for it.",
+    "career.btn":"Send your portfolio",
+    "career.r1.h":"AI video artist",
+    "career.r1.p":"You generate frames and scenes in Higgsfield, Runway, Veo, Midjourney or similar, and you know how to keep a character consistent.",
+    "career.r2.h":"Editor / motion designer",
+    "career.r2.p":"Premiere, After Effects or DaVinci. Rhythm, subtitles, sound design, clean graphics.",
+    "career.r3.h":"Scriptwriter / creative",
+    "career.r3.p":"You turn a brief into an idea and a script that holds attention for the first three seconds.",
+    "career.r4.h":"Sound &amp; voice-over",
+    "career.r4.p":"Voice recording or AI voice, music selection, mixing and mastering for social platforms.",
+
+    "contact.eyebrow":"Get in touch",
+    "contact.h2":"Tell us about your task — we'll come back with an idea and a price.",
+    "contact.dt1":"Email",
+    "contact.dt2":"Where we are",
+    "contact.dd2":"Ivano-Frankivsk, Ukraine",
+    "contact.dt3":"How we work",
+    "contact.dd3":"Online, across Ukraine and worldwide",
+
+    "footer.ai":"Content created with AI",
+    "footer.city":"Ivano-Frankivsk, Ukraine"
+  },
+
+  uk: {
+    "meta.title":"AXION — digital агенція | Івано-Франківськ",
+    "meta.desc":"AXION — digital агенція з Івано-Франківська. Відео, реклама та контент для соцмереж, створені генеративними нейромережами.",
+    "meta.ogtitle":"AXION — digital агенція",
+    "meta.ogdesc":"Відео, реклама та контент для соцмереж, створені нейромережами. Івано-Франківськ.",
+    "meta.oglocale":"uk_UA",
+    "mail.subject":"Заявка з сайту AXION",
+    "mail.career":"Вакансія в AXION",
+
+    "lang.group":"Мова сайту",
+
+    "nav.services":"Послуги",
+    "nav.process":"Процес",
+    "nav.packages":"Пакети",
+    "nav.work":"Роботи",
+    "nav.career":"Кар'єра",
+    "nav.contact":"Контакти",
+
+    "hero.eyebrow":"Digital агенція <span>·</span> Івано-Франківськ",
+    "hero.lede":"Збираємо відео з нуля: <b>ідея, сценарій, генерація, монтаж, звук</b>. Ролики для реклами, соцмереж і презентацій — щоб бренд помітили з першої секунди.",
+    "hero.ai":"Візуал створюємо нейромережами",
+    "hero.cta1":"Замовити ролик",
+    "hero.cta2":"Подивитись роботи",
+    "hero.canvas":"Логотип AXION: літера A, що розсипається на частинки",
+
+    "services.h2":"Що робимо",
+    "services.sub":"Від одного ролика до постійного контенту для всіх майданчиків.",
+    "services.c1.h":"Відео та реклама",
+    "services.c1.p":"Рекламні ролики, промо, анонси, відео для сайту й маркетплейсів.",
+    "services.c2.h":"Контент для соцмереж",
+    "services.c2.p":"Вертикальні ролики під Reels, TikTok і Shorts — серіями, в одному стилі.",
+    "services.c3.h":"Ідея й сценарій",
+    "services.c3.p":"Придумуємо, що знімати й говорити: концепція, текст, розкадровка, озвучення.",
+
+    "process.h2":"Як ми це робимо",
+    "process.sub":"Прозоро: більшість візуалу в наших роликах згенерована нейромережами, а не знята камерою.",
+    "process.s1.h":"Бриф і сценарій",
+    "process.s1.p":"Розбираємо задачу, аудиторію й меседж. Пишемо сценарій і розкадровку.",
+    "process.s2.h":"Генерація",
+    "process.s2.p":"Кадри, персонажів і сцени створюємо в генеративних моделях — під потрібний стиль.",
+    "process.s3.h":"Монтаж і звук",
+    "process.s3.p":"Складаємо таймлайн, додаємо графіку, субтитри, музику й озвучення.",
+    "process.s4.h":"Правки й видача",
+    "process.s4.p":"Узгоджуємо, вносимо правки й віддаємо файли в усіх потрібних форматах.",
+    "process.disclose":"Що це означає для вас: <b>без знімальної групи, локацій і акторів</b> — тому швидше й дешевше. Ми не видаємо згенеровані кадри за реальну зйомку і завжди кажемо, де що згенеровано. Якщо для проєкту потрібні реальні кадри або ваші власні матеріали — інтегруємо їх у ролик.",
+
+    "packages.h2":"Пакети",
+    "packages.sub":"Оберіть формат — вартість називаємо після короткого брифу.",
+    "packages.t1.h":"Ролик",
+    "packages.t1.p":"Один ролик під конкретну задачу.",
+    "packages.t1.i1":"Формат під вашу задачу",
+    "packages.t1.i2":"Вертикальний або горизонтальний",
+    "packages.t1.i3":"Монтаж, субтитри, музика",
+    "packages.t1.i4":"1 раунд правок",
+    "packages.t1.i5":"Готово за 2–3 дні",
+    "packages.t1.btn":"Обговорити",
+    "packages.t2.h":"Серія",
+    "packages.t2.p":"Пакет роликів на місяць в єдиному стилі.",
+    "packages.t2.i1":"5 роликів",
+    "packages.t2.i2":"Спільна візуальна лінія та шаблони",
+    "packages.t2.i3":"Адаптація під Reels, TikTok, Shorts",
+    "packages.t2.i4":"2 раунди правок",
+    "packages.t2.i5":"Контент-план на місяць",
+    "packages.t2.btn":"Замовити пакет",
+    "packages.t3.h":"Під ключ",
+    "packages.t3.p":"Повний супровід проєкту або бренду.",
+    "packages.t3.i1":"Ідея, сценарій, генерація або зйомка",
+    "packages.t3.i2":"Озвучення й звуковий дизайн",
+    "packages.t3.i3":"Складна графіка та анімація",
+    "packages.t3.i4":"Правки без ліміту в межах етапу",
+    "packages.t3.i5":"Строки під ваш запуск",
+    "packages.t3.btn":"Порахувати",
+    "packages.note":"Кожен проєкт рахуємо індивідуально — надішліть короткий бриф, і ми повернемось із планом, строками та сумою. Оплата: 50% на старті, 50% після затвердження.",
+
+    "work.h2":"Роботи",
+    "work.sub":"Кілька останніх роликів.",
+    "work.meta1":"<b>AI-ведучий</b> · Рекламний креатив",
+    "work.meta2":"<b>Мультфільм</b> · Анімація",
+    "work.meta3":"<b>Мультстиль</b> · Рекламний креатив",
+    "work.meta4":"<b>Nike</b> · Концепт-ролик",
+    "work.play1":"Відтворити: рекламний ролик з AI-ведучим",
+    "work.play2":"Відтворити: мультфільм",
+    "work.play3":"Відтворити: рекламний ролик у мультстилі",
+    "work.play4":"Відтворити: концепт-ролик Nike",
+    "work.note":"Усі ролики на цій сторінці створені за допомогою генеративних нейромереж.",
+
+    "faq.h2":"Питання",
+    "faq.sub":"Коротко про те, що питають найчастіше.",
+    "faq.q1":"Ви знімаєте на камеру?",
+    "faq.a1":"Здебільшого ні. Основний візуал ми генеруємо нейромережами. Якщо потрібна реальна зйомка — працюємо з вашими матеріалами або організовуємо зйомку окремо.",
+    "faq.q2":"Чи можна крутити такі ролики в рекламі?",
+    "faq.a2":"Так. Віддаємо файли у форматах під Meta, TikTok, YouTube і Google Ads. Якщо майданчик вимагає позначки про AI-контент — підкажемо, як її поставити.",
+    "faq.q3":"Скільки часу займає ролик?",
+    "faq.a3":"Один ролик — 2–3 дні від затвердження сценарію. Серія з 5 роликів — 7–10 днів.",
+    "faq.q4":"Кому належать права на відео?",
+    "faq.a4":"Вам. Після повної оплати ви отримуєте вихідні файли й можете використовувати їх без обмежень.",
+
+    "career.h2":"Кар'єра",
+    "career.sub":"Ми невелика команда і ростемо разом з людьми, з якими подобається працювати.",
+    "career.p1":"Якщо ви спеціаліст, який вміє оживляти картинку, — <b>зв'яжіться з нами</b>. Працюємо віддалено, проєктно або на постійній співпраці. Нам значно важливіше те, що ви зробили, ніж ваше резюме.",
+    "career.p2":"Надішліть коротко про себе, посилання на роботи чи шоуріл і те, які задачі вам цікаві. Ми читаємо кожен лист і відповідаємо тим, хто підходить.",
+    "career.p3":"Не бачите своєї ролі у списку? Пишіть усе одно — якщо ви вмієте те, чого не вміємо ми, знайдемо під це проєкт.",
+    "career.btn":"Надіслати портфоліо",
+    "career.r1.h":"AI відео-артист",
+    "career.r1.p":"Генеруєте кадри та сцени в Higgsfield, Runway, Veo, Midjourney чи подібних і вмієте тримати персонажа однаковим.",
+    "career.r2.h":"Монтажер / motion-дизайнер",
+    "career.r2.p":"Premiere, After Effects або DaVinci. Ритм, субтитри, звуковий дизайн, охайна графіка.",
+    "career.r3.h":"Сценарист / креативник",
+    "career.r3.p":"Перетворюєте бриф на ідею та сценарій, який утримує увагу з перших трьох секунд.",
+    "career.r4.h":"Звук і озвучення",
+    "career.r4.p":"Запис голосу або AI-голос, добір музики, зведення й мастеринг під соцмережі.",
+
+    "contact.eyebrow":"Напишіть нам",
+    "contact.h2":"Розкажіть про задачу — відповімо з ідеєю та ціною.",
+    "contact.dt1":"Пошта",
+    "contact.dt2":"Де ми",
+    "contact.dd2":"Україна, Івано-Франківськ",
+    "contact.dt3":"Формат роботи",
+    "contact.dd3":"Онлайн, по всій Україні та за кордоном",
+
+    "footer.ai":"Контент створено за допомогою AI",
+    "footer.city":"Івано-Франківськ, Україна"
+  }
+};
+
+(function(){
+  var STORE_KEY = 'axion-lang';
+  var EMAIL = 'vi.aicreation@gmail.com';
+  var DEFAULT_LANG = 'en';   /* мова за замовчуванням */
+
+  /* --- визначення мови ---
+     1) вибір, збережений користувачем;
+     2) ?lang=uk / ?lang=en в адресі;
+     3) інакше — англійська. */
+  function fromQuery(){
+    var m = /[?&]lang=(uk|en)\b/i.exec(location.search);
+    return m ? m[1].toLowerCase() : null;
+  }
+  function fromStore(){
+    try{
+      var v = localStorage.getItem(STORE_KEY);
+      return (v === 'uk' || v === 'en') ? v : null;
+    }catch(e){ return null; }
+  }
+  /* Якщо колись захочете, щоб українські браузери одразу бачили українську,
+     розкоментуйте цю функцію і додайте "|| fromBrowser()" у detect(). */
+  // function fromBrowser(){
+  //   var list = navigator.languages && navigator.languages.length
+  //     ? navigator.languages
+  //     : [navigator.language || 'en'];
+  //   for(var i=0;i<list.length;i++){ if(/^uk/i.test(list[i])) return 'uk'; }
+  //   return null;
+  // }
+  function detect(){
+    return fromStore() || fromQuery() || DEFAULT_LANG;
+  }
+
+  function setMeta(sel, value){
+    var el = document.querySelector(sel);
+    if(el) el.setAttribute('content', value);
+  }
+
+  function apply(lang, remember){
+    var dict = I18N[lang] || I18N[DEFAULT_LANG];
+
+    document.documentElement.lang = lang;
+    document.title = dict['meta.title'];
+    setMeta('meta[name="description"]', dict['meta.desc']);
+    setMeta('meta[property="og:title"]', dict['meta.ogtitle']);
+    setMeta('meta[property="og:description"]', dict['meta.ogdesc']);
+    setMeta('meta[property="og:locale"]', dict['meta.oglocale']);
+
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var v = dict[el.getAttribute('data-i18n')];
+      if(v != null) el.innerHTML = v;
+    });
+    document.querySelectorAll('[data-i18n-aria]').forEach(function(el){
+      var v = dict[el.getAttribute('data-i18n-aria')];
+      if(v != null) el.setAttribute('aria-label', v);
+    });
+
+    var mail = document.getElementById('mailLink');
+    if(mail) mail.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(dict['mail.subject']);
+    var career = document.getElementById('careerMail');
+    if(career) career.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(dict['mail.career']);
+
+    document.querySelectorAll('.lang button').forEach(function(b){
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === lang));
+    });
+
+    if(remember){
+      try{ localStorage.setItem(STORE_KEY, lang); }catch(e){}
+      if(history.replaceState){
+        var url = location.pathname + '?lang=' + lang + location.hash;
+        history.replaceState(null, '', url);
+      }
+    }
+  }
+
+  apply(detect(), false);
+
+  document.querySelectorAll('.lang button').forEach(function(b){
+    b.addEventListener('click', function(){
+      apply(b.getAttribute('data-lang'), true);
+    });
+  });
+})();
+</script>
+
+<script>
+(function(){
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* sticky header state */
+  var head = document.getElementById('head');
+  var onScroll = function(){ head.classList.toggle('is-stuck', window.scrollY > 8); };
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  /* reveal on scroll */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:.15, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el, i){
+    el.style.transitionDelay = (i % 4) * 70 + 'ms';
+    io.observe(el);
+  });
+
+  /* ---------- reels: орієнтація + відтворення ---------- */
+  var reels = Array.prototype.slice.call(document.querySelectorAll('.reel'));
+  reels.forEach(function(reel){
+    var video = reel.querySelector('video');
+    var cover = reel.querySelector('.reel-cover');
+    if(!video || !cover) return;
+
+    cover.addEventListener('click', function(){
+      reels.forEach(function(other){
+        if(other === reel) return;
+        var v = other.querySelector('video');
+        if(v && !v.paused){ v.pause(); other.classList.remove('is-playing'); }
+      });
+      reel.classList.add('is-playing');
+      video.controls = true;
+      video.play();
+    });
+
+    video.addEventListener('ended', function(){
+      reel.classList.remove('is-playing');
+      video.controls = false;
+      video.currentTime = 0;
+    });
+  });
+
+  /* ---------- particle logo ---------- */
+  var canvas = document.getElementById('particles');
+  var ctx = canvas.getContext('2d');
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var particles = [];
+  var W = 0, H = 0, dpr = 1;
+  var mouse = {x:-9999, y:-9999};
+  var running = false, t0 = 0;
+
+  function sampleLetter(){
+    var off = document.createElement('canvas');
+    var octx = off.getContext('2d');
+    var S = 400;
+    off.width = S; off.height = S;
+    octx.fillStyle = '#fff';
+    octx.textAlign = 'center';
+    octx.textBaseline = 'middle';
+    octx.font = '800 300px Unbounded, "Trebuchet MS", sans-serif';
+    octx.fillText('A', S/2, S/2 + 8);
+
+    var data = octx.getImageData(0,0,S,S).data;
+    var pts = [], step = 3;
+    var minX = S, maxX = 0;
+    for(var y=0;y<S;y+=step){
+      for(var x=0;x<S;x+=step){
+        if(data[(y*S+x)*4+3] > 140){
+          pts.push([x,y]);
+          if(x<minX) minX=x;
+          if(x>maxX) maxX=x;
+        }
+      }
+    }
+    return {pts:pts, minX:minX, maxX:maxX, size:S};
+  }
+
+  function build(){
+    var s = sampleLetter();
+    var scale = Math.min(W, H) / s.size * 0.86;
+    var ox = W * 0.60 - (s.size * scale) / 2;
+    var oy = H / 2 - (s.size * scale) / 2;
+    var spread = Math.min(W * 0.52, 380);
+
+    particles = [];
+    s.pts.forEach(function(p){
+      var nx = (p[0] - s.minX) / (s.maxX - s.minX);      // 0 = ліворуч
+      var d = Math.max(0, Math.min(1, 1.35 - nx * 2.0)); // сила розсипання
+      if(Math.random() < d * 0.92) d = Math.pow(d, .8); else d = 0;
+
+      var tx = ox + p[0] * scale;
+      var ty = oy + p[1] * scale;
+      if(d > 0){
+        tx -= Math.pow(Math.random(), .6) * spread * d;
+        ty += (Math.random() - .5) * spread * d * 1.15;
+      }
+      var isLine = d > .25 && Math.random() < .1;
+      particles.push({
+        hx:tx, hy:ty,
+        x:tx + (Math.random()-.5)*W, y:ty + (Math.random()-.5)*H,
+        vx:0, vy:0,
+        r:isLine ? 0 : (d > 0 ? .5 + Math.random()*1.3 : .7 + Math.random()*1.1),
+        len:isLine ? 3 + Math.random()*8 : 0,
+        ang:Math.random()*Math.PI,
+        a:d > 0 ? .18 + (1-d)*0.62 + Math.random()*.2 : .92,
+        ph:Math.random()*Math.PI*2,
+        drift:d
+      });
+    });
+    // додаткова хмара далеко ліворуч
+    for(var i=0;i<130;i++){
+      var cx = ox - spread*(0.25 + Math.random()*0.85);
+      var cy = oy + s.size*scale*0.5 + (Math.random()-.5)*Math.min(H*0.9, 420);
+      particles.push({
+        hx:cx, hy:cy, x:cx, y:cy, vx:0, vy:0,
+        r:Math.random()<.15 ? 0 : .4 + Math.random()*.9,
+        len:Math.random()<.15 ? 3 + Math.random()*7 : 0,
+        ang:Math.random()*Math.PI,
+        a:.08 + Math.random()*.28,
+        ph:Math.random()*Math.PI*2,
+        drift:1
+      });
+    }
+  }
+
+  function resize(){
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = canvas.clientWidth;
+    H = canvas.clientHeight;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    build();
+  }
+
+  function frame(ts){
+    if(!running) return;
+    if(!t0) t0 = ts;
+    var intro = Math.min(1, (ts - t0) / 1400);
+    var ease = 1 - Math.pow(1 - intro, 3);
+    var time = ts / 1000;
+
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle = '#EEF0F3';
+    ctx.strokeStyle = '#EEF0F3';
+    ctx.lineWidth = 1;
+
+    for(var i=0;i<particles.length;i++){
+      var p = particles[i];
+      var tx = p.hx + Math.sin(time*.5 + p.ph) * 2.4 * p.drift;
+      var ty = p.hy + Math.cos(time*.42 + p.ph) * 2.4 * p.drift;
+
+      var dx = mouse.x - p.x, dy = mouse.y - p.y;
+      var dist = Math.sqrt(dx*dx + dy*dy);
+      if(dist < 95 && dist > 0.01){
+        var f = (1 - dist/95) * 3.4;
+        p.vx -= (dx/dist) * f;
+        p.vy -= (dy/dist) * f;
+      }
+      p.vx += (tx - p.x) * 0.055;
+      p.vy += (ty - p.y) * 0.055;
+      p.vx *= 0.82; p.vy *= 0.82;
+      p.x += p.vx; p.y += p.vy;
+
+      ctx.globalAlpha = p.a * ease;
+      if(p.len){
+        var c = Math.cos(p.ang)*p.len*.5, s2 = Math.sin(p.ang)*p.len*.5;
+        ctx.beginPath();
+        ctx.moveTo(p.x - c, p.y - s2);
+        ctx.lineTo(p.x + c, p.y + s2);
+        ctx.stroke();
+      } else {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, 6.2832);
+        ctx.fill();
+      }
+    }
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(frame);
+  }
+
+  function drawStatic(){
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle = '#EEF0F3';
+    ctx.strokeStyle = '#EEF0F3';
+    particles.forEach(function(p){
+      ctx.globalAlpha = p.a;
+      if(p.len){
+        var c = Math.cos(p.ang)*p.len*.5, s2 = Math.sin(p.ang)*p.len*.5;
+        ctx.beginPath(); ctx.moveTo(p.hx-c,p.hy-s2); ctx.lineTo(p.hx+c,p.hy+s2); ctx.stroke();
+      } else {
+        ctx.beginPath(); ctx.arc(p.hx, p.hy, p.r, 0, 6.2832); ctx.fill();
+      }
+    });
+    ctx.globalAlpha = 1;
+  }
+
+  function start(){
+    if(reduced){ drawStatic(); return; }
+    if(running) return;
+    running = true; t0 = 0;
+    requestAnimationFrame(frame);
+  }
+
+  canvas.addEventListener('pointermove', function(e){
+    var r = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - r.left;
+    mouse.y = e.clientY - r.top;
+  });
+  canvas.addEventListener('pointerleave', function(){ mouse.x = -9999; mouse.y = -9999; });
+
+  var rt;
+  window.addEventListener('resize', function(){
+    clearTimeout(rt);
+    rt = setTimeout(function(){ resize(); if(reduced) drawStatic(); }, 180);
+  });
+
+  /* пауза, коли герой поза екраном */
+  new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ start(); } else { running = false; }
+    });
+  }, {threshold:0}).observe(canvas);
+
+  function init(){ resize(); if(reduced) drawStatic(); else start(); }
+  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(init); } else { window.addEventListener('load', init); }
+})();
+</script>
+</body>
+</html>
