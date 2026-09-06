@@ -1,4 +1,4 @@
-# AXION — сайт агенції
+# BLACK PAW — сайт агенції
 
 Статичний односторінковий сайт. Ніякої збірки, фреймворків і залежностей — просто відкрийте `index.html`.
 
@@ -23,9 +23,7 @@ video/
 
 | Де | Що |
 |---|---|
-| `<head>`, 4 рядки з `example.com` | ваш реальний домен |
-| `og:image` | картинка прев'ю 1200×630 px, покласти поруч з `index.html` |
-| `https://t.me/axion` | ваш нік у Telegram |
+| `og-cover.jpg` | картинка прев'ю 1200×630 px — покласти в корінь репозиторію саме під цією назвою (на неї вказує `og:image`) |
 | `vi.aicreation@gmail.com` | пошта, якщо зміниться (зустрічається у 4 місцях) |
 
 ## Мова за замовчуванням
@@ -51,10 +49,10 @@ video/
 ## Публікація на GitHub Pages
 
 ```bash
-git remote add origin https://github.com/USERNAME/axion-site.git
+git remote add origin https://github.com/VasylD-automation/axion-site.git
 git branch -M main
 git push -u origin main
 ```
 
 Далі в репозиторії: **Settings → Pages → Source: Deploy from a branch → main / (root)**.
-За хвилину сайт буде на `https://USERNAME.github.io/axion-site/`.
+За хвилину сайт буде на `https://paw.black` (домен задано у файлі `CNAME`).
