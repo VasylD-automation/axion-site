@@ -115,12 +115,7 @@
     padding-top:68px;
     position:relative;
   }
-  .hero-figure{
-    background:var(--silver);
-    border-radius:4px;
-    padding:clamp(14px,2vw,26px);
-    overflow:hidden;
-  }
+  .hero-figure{position:relative}
   #particles{width:100%;height:min(60vh,520px);display:block}
   .hero-copy{padding-block:40px}
   .hero h1{
@@ -412,11 +407,12 @@
     gap:clamp(48px,6vw,88px);padding-right:clamp(48px,6vw,88px);
     animation:marq 38s linear infinite}
   .marquee:hover .marquee-track{animation-play-state:paused}
-  @keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes marq{from{transform:translateX(0)}to{transform:translateX(-25%)}}
   .marquee img{display:block;flex:none;opacity:.6;transition:opacity .25s ease}
   .marquee img:hover{opacity:1}
   .logo-hp{height:42px}
   .logo-oxford{height:50px}
+  .logo-broadway{height:40px}
   .logo-lart{height:32px}
   .logo-wakebio{height:28px}
   .logo-schirra{height:26px}
@@ -483,16 +479,30 @@
       <p class="eyebrow" data-i18n="clients.eyebrow">Selected clients</p>
       <div class="marquee">
         <div class="marquee-track">
-          <img class="logo-hp"      src="clients/hp.png"      alt="HP">
-          <img class="logo-oxford"  src="clients/oxford.png"  alt="University of Oxford">
-          <img class="logo-lart"    src="clients/lart.png"    alt="l'art">
-          <img class="logo-wakebio" src="clients/wakebio.png" alt="Wake Bio">
-          <img class="logo-schirra" src="clients/schirra.png" alt="Schirra iT">
-          <img class="logo-hp"      src="clients/hp.png"      alt="" aria-hidden="true">
-          <img class="logo-oxford"  src="clients/oxford.png"  alt="" aria-hidden="true">
-          <img class="logo-lart"    src="clients/lart.png"    alt="" aria-hidden="true">
-          <img class="logo-wakebio" src="clients/wakebio.png" alt="" aria-hidden="true">
-          <img class="logo-schirra" src="clients/schirra.png" alt="" aria-hidden="true">
+          <img class="logo-hp"       src="clients/hp.png"       alt="HP">
+          <img class="logo-oxford"   src="clients/oxford.png"   alt="University of Oxford">
+          <img class="logo-broadway" src="clients/broadway.png" alt="The Broadway Collective">
+          <img class="logo-lart"     src="clients/lart.png"     alt="l'art">
+          <img class="logo-wakebio"  src="clients/wakebio.png"  alt="Wake Bio">
+          <img class="logo-schirra"  src="clients/schirra.png"  alt="Schirra iT">
+          <img class="logo-hp"       src="clients/hp.png"       alt="" aria-hidden="true">
+          <img class="logo-oxford"   src="clients/oxford.png"   alt="" aria-hidden="true">
+          <img class="logo-broadway" src="clients/broadway.png" alt="" aria-hidden="true">
+          <img class="logo-lart"     src="clients/lart.png"     alt="" aria-hidden="true">
+          <img class="logo-wakebio"  src="clients/wakebio.png"  alt="" aria-hidden="true">
+          <img class="logo-schirra"  src="clients/schirra.png"  alt="" aria-hidden="true">
+          <img class="logo-hp"       src="clients/hp.png"       alt="" aria-hidden="true">
+          <img class="logo-oxford"   src="clients/oxford.png"   alt="" aria-hidden="true">
+          <img class="logo-broadway" src="clients/broadway.png" alt="" aria-hidden="true">
+          <img class="logo-lart"     src="clients/lart.png"     alt="" aria-hidden="true">
+          <img class="logo-wakebio"  src="clients/wakebio.png"  alt="" aria-hidden="true">
+          <img class="logo-schirra"  src="clients/schirra.png"  alt="" aria-hidden="true">
+          <img class="logo-hp"       src="clients/hp.png"       alt="" aria-hidden="true">
+          <img class="logo-oxford"   src="clients/oxford.png"   alt="" aria-hidden="true">
+          <img class="logo-broadway" src="clients/broadway.png" alt="" aria-hidden="true">
+          <img class="logo-lart"     src="clients/lart.png"     alt="" aria-hidden="true">
+          <img class="logo-wakebio"  src="clients/wakebio.png"  alt="" aria-hidden="true">
+          <img class="logo-schirra"  src="clients/schirra.png"  alt="" aria-hidden="true">
         </div>
       </div>
     </div>
@@ -1162,14 +1172,14 @@ var I18N = {
   var mouse = {x:-9999, y:-9999};
   var running = false, t0 = 0;
 
-  function samplePaw(){
+  /* маска лапи: подушечка + чотири пальці. Лапа не малюється —
+     вона вирізається з поля частинок, тобто це порожнеча. */
+  function pawMask(){
     var off = document.createElement('canvas');
     var octx = off.getContext('2d');
     var S = 400;
     off.width = S; off.height = S;
     octx.fillStyle = '#fff';
-
-    /* відбиток лапи: подушечка + чотири пальці */
     var PAW = [
       [200, 262, 80, 64,   0],
       [118, 152, 30, 41, -20],
@@ -1182,69 +1192,50 @@ var I18N = {
       octx.ellipse(e[0], e[1], e[2], e[3], e[4] * Math.PI / 180, 0, Math.PI * 2);
       octx.fill();
     });
-
-    var data = octx.getImageData(0,0,S,S).data;
-    var pts = [], step = 3;
-    var minX = S, maxX = 0;
-    for(var y=0;y<S;y+=step){
-      for(var x=0;x<S;x+=step){
-        if(data[(y*S+x)*4+3] > 140){
-          pts.push([x,y]);
-          if(x<minX) minX=x;
-          if(x>maxX) maxX=x;
-        }
-      }
-    }
-    return {pts:pts, minX:minX, maxX:maxX, size:S};
+    return {data: octx.getImageData(0,0,S,S).data, size:S};
   }
 
   function build(){
-    var s = samplePaw();
-    var scale = Math.min(W, H) / s.size * 0.86;
-    var k = Math.min(1, scale / 0.95);   // масштаб частинок під розмір фігури
-    var ox = W * 0.60 - (s.size * scale) / 2;
-    var oy = H / 2 - (s.size * scale) / 2;
-    var spread = Math.min(W * 0.52, 380);
+    var m = pawMask(), S = m.size;
+    var scale = Math.min(W, H) / S * 0.66;
+    var k = Math.min(1, scale / 0.70);
+    var ox = W * 0.52 - (S * scale) / 2;
+    var oy = H * 0.50 - (S * scale) / 2;
+    var cx = ox + S * scale * 0.50;
+    var cy = oy + S * scale * 0.48;
+    var RX = Math.min(W, H) * 0.62;
+    var RY = Math.min(W, H) * 0.58;
+
+    var target = (W < 700 ? 10000 : 26000);
+    var step = Math.max(2.6, Math.sqrt((Math.PI * RX * RY) / target));
+    var jit = step * 0.6;
 
     particles = [];
-    s.pts.forEach(function(p){
-      var nx = (p[0] - s.minX) / (s.maxX - s.minX);      // 0 = ліворуч
-      var d = Math.max(0, Math.min(1, 0.75 - nx * 1.5)); // сила розсипання
-      if(Math.random() < d * 0.92) d = Math.pow(d, .8); else d = 0;
-
-      var tx = ox + p[0] * scale;
-      var ty = oy + p[1] * scale;
-      if(d > 0){
-        tx -= Math.pow(Math.random(), .6) * spread * d;
-        ty += (Math.random() - .5) * spread * d * 1.15;
+    for(var y = 0; y < H; y += step){
+      for(var x = 0; x < W; x += step){
+        var px = x + (Math.random() - .5) * jit;
+        var py = y + (Math.random() - .5) * jit;
+        var dx = (px - cx) / RX, dy = (py - cy) / RY;
+        var rr = Math.sqrt(dx*dx + dy*dy);
+        if(rr > 1) continue;
+        var sx = Math.round((px - ox) / scale), sy = Math.round((py - oy) / scale);
+        if(sx >= 0 && sx < S && sy >= 0 && sy < S && m.data[(sy*S+sx)*4+3] > 140) continue;
+        var fade = Math.pow(1 - rr, 1.5);
+        var a = (.14 + Math.random() * .74) * fade;
+        if(a < .03) continue;
+        var isLine = Math.random() < .05;
+        particles.push({
+          hx:px, hy:py,
+          x:px + (Math.random()-.5)*W, y:py + (Math.random()-.5)*H,
+          vx:0, vy:0,
+          r:isLine ? 0 : (.5 + Math.random()*1.05) * k,
+          len:isLine ? (3 + Math.random()*7) * k : 0,
+          ang:Math.random()*Math.PI,
+          a:a,
+          ph:Math.random()*Math.PI*2,
+          drift:.25 + rr*.75
+        });
       }
-      var isLine = d > .25 && Math.random() < .1;
-      particles.push({
-        hx:tx, hy:ty,
-        x:tx + (Math.random()-.5)*W, y:ty + (Math.random()-.5)*H,
-        vx:0, vy:0,
-        r:isLine ? 0 : (d > 0 ? (.5 + Math.random()*1.3) * k
-                              : (.7 + Math.random()*1.1) * k),
-        len:isLine ? (3 + Math.random()*8) * k : 0,
-        ang:Math.random()*Math.PI,
-        a:d > 0 ? .18 + (1-d)*0.62 + Math.random()*.2 : .92,
-        ph:Math.random()*Math.PI*2,
-        drift:d
-      });
-    });
-    // додаткова хмара далеко ліворуч
-    for(var i=0;i<130;i++){
-      var cx = ox - spread*(0.25 + Math.random()*0.85);
-      var cy = oy + s.size*scale*0.5 + (Math.random()-.5)*Math.min(H*0.9, 420);
-      particles.push({
-        hx:cx, hy:cy, x:cx, y:cy, vx:0, vy:0,
-        r:Math.random()<.15 ? 0 : (.4 + Math.random()*.9) * k,
-        len:Math.random()<.15 ? (3 + Math.random()*7) * k : 0,
-        ang:Math.random()*Math.PI,
-        a:.08 + Math.random()*.28,
-        ph:Math.random()*Math.PI*2,
-        drift:1
-      });
     }
   }
 
@@ -1266,8 +1257,8 @@ var I18N = {
     var time = ts / 1000;
 
     ctx.clearRect(0,0,W,H);
-    ctx.fillStyle = '#0C0D10';
-    ctx.strokeStyle = '#0C0D10';
+    ctx.fillStyle = '#EEF0F3';
+    ctx.strokeStyle = '#EEF0F3';
     ctx.lineWidth = 1;
 
     for(var i=0;i<particles.length;i++){
@@ -1306,8 +1297,8 @@ var I18N = {
 
   function drawStatic(){
     ctx.clearRect(0,0,W,H);
-    ctx.fillStyle = '#0C0D10';
-    ctx.strokeStyle = '#0C0D10';
+    ctx.fillStyle = '#EEF0F3';
+    ctx.strokeStyle = '#EEF0F3';
     particles.forEach(function(p){
       ctx.globalAlpha = p.a;
       if(p.len){
