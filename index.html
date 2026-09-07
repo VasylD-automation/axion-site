@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://paw.black/og-cover.jpg">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230C0D10'/%3E%3Cg fill='%23EEF0F3'%3E%3Cellipse cx='16' cy='21' rx='7' ry='5.5'/%3E%3Cellipse cx='9' cy='12' rx='2.6' ry='3.4'/%3E%3Cellipse cx='13.5' cy='9' rx='2.6' ry='3.4'/%3E%3Cellipse cx='18.5' cy='9' rx='2.6' ry='3.4'/%3E%3Cellipse cx='23' cy='12' rx='2.6' ry='3.4'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23EEF0F3'/%3E%3Cg fill='%230C0D10'%3E%3Cellipse cx='16' cy='21' rx='7' ry='5.5'/%3E%3Cellipse cx='9' cy='12' rx='2.6' ry='3.4'/%3E%3Cellipse cx='13.5' cy='9' rx='2.6' ry='3.4'/%3E%3Cellipse cx='18.5' cy='9' rx='2.6' ry='3.4'/%3E%3Cellipse cx='23' cy='12' rx='2.6' ry='3.4'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Manrope:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -114,6 +114,12 @@
     gap:clamp(16px,4vw,56px);
     padding-top:68px;
     position:relative;
+  }
+  .hero-figure{
+    background:var(--silver);
+    border-radius:4px;
+    padding:clamp(14px,2vw,26px);
+    overflow:hidden;
   }
   #particles{width:100%;height:min(60vh,520px);display:block}
   .hero-copy{padding-block:40px}
@@ -395,6 +401,31 @@
     letter-spacing:.08em;
   }
 
+  /* ---------- clients ---------- */
+  .clients{padding-block:clamp(40px,5vw,64px);
+    border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+  .clients .eyebrow{margin-bottom:26px}
+  .marquee{position:relative;overflow:hidden;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+  .marquee-track{display:flex;align-items:center;width:max-content;
+    gap:clamp(48px,6vw,88px);padding-right:clamp(48px,6vw,88px);
+    animation:marq 38s linear infinite}
+  .marquee:hover .marquee-track{animation-play-state:paused}
+  @keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .marquee img{display:block;flex:none;opacity:.6;transition:opacity .25s ease}
+  .marquee img:hover{opacity:1}
+  .logo-hp{height:42px}
+  .logo-oxford{height:50px}
+  .logo-lart{height:32px}
+  .logo-wakebio{height:28px}
+  .logo-schirra{height:26px}
+  @media(prefers-reduced-motion:reduce){
+    .marquee-track{animation:none;width:auto;flex-wrap:wrap;justify-content:center;
+      row-gap:28px;padding-right:0}
+    .marquee{-webkit-mask-image:none;mask-image:none}
+  }
+
   /* ---------- reveal ---------- */
   .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
   .reveal.in{opacity:1;transform:none}
@@ -443,6 +474,27 @@
     </div>
     <div class="hero-figure">
       <canvas id="particles" data-i18n-aria="hero.canvas" aria-label="BLACK PAW logo: a paw print dissolving into particles" role="img"></canvas>
+    </div>
+  </section>
+
+  <!-- CLIENTS -->
+  <section id="clients" class="clients">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="clients.eyebrow">Selected clients</p>
+      <div class="marquee">
+        <div class="marquee-track">
+          <img class="logo-hp"      src="clients/hp.png"      alt="HP">
+          <img class="logo-oxford"  src="clients/oxford.png"  alt="University of Oxford">
+          <img class="logo-lart"    src="clients/lart.png"    alt="l'art">
+          <img class="logo-wakebio" src="clients/wakebio.png" alt="Wake Bio">
+          <img class="logo-schirra" src="clients/schirra.png" alt="Schirra iT">
+          <img class="logo-hp"      src="clients/hp.png"      alt="" aria-hidden="true">
+          <img class="logo-oxford"  src="clients/oxford.png"  alt="" aria-hidden="true">
+          <img class="logo-lart"    src="clients/lart.png"    alt="" aria-hidden="true">
+          <img class="logo-wakebio" src="clients/wakebio.png" alt="" aria-hidden="true">
+          <img class="logo-schirra" src="clients/schirra.png" alt="" aria-hidden="true">
+        </div>
+      </div>
     </div>
   </section>
 
@@ -736,6 +788,8 @@ var I18N = {
     "hero.cta2":"See our work",
     "hero.canvas":"BLACK PAW logo: a paw print dissolving into particles",
 
+    "clients.eyebrow":"Selected clients",
+
     "services.h2":"What we do",
     "services.sub":"From a single video to ongoing content for every platform.",
     "services.c1.h":"Video &amp; ads",
@@ -859,6 +913,8 @@ var I18N = {
     "hero.cta1":"Замовити ролик",
     "hero.cta2":"Подивитись роботи",
     "hero.canvas":"Логотип BLACK PAW: відбиток лапи, що розсипається на частинки",
+
+    "clients.eyebrow":"Серед клієнтів",
 
     "services.h2":"Що робимо",
     "services.sub":"Від одного ролика до постійного контенту для всіх майданчиків.",
@@ -1201,8 +1257,8 @@ var I18N = {
     var time = ts / 1000;
 
     ctx.clearRect(0,0,W,H);
-    ctx.fillStyle = '#EEF0F3';
-    ctx.strokeStyle = '#EEF0F3';
+    ctx.fillStyle = '#0C0D10';
+    ctx.strokeStyle = '#0C0D10';
     ctx.lineWidth = 1;
 
     for(var i=0;i<particles.length;i++){
@@ -1241,8 +1297,8 @@ var I18N = {
 
   function drawStatic(){
     ctx.clearRect(0,0,W,H);
-    ctx.fillStyle = '#EEF0F3';
-    ctx.strokeStyle = '#EEF0F3';
+    ctx.fillStyle = '#0C0D10';
+    ctx.strokeStyle = '#0C0D10';
     particles.forEach(function(p){
       ctx.globalAlpha = p.a;
       if(p.len){
