@@ -85,7 +85,6 @@
   @media(max-width:780px){.nav a[data-nav="services"]{display:none}}
   @media(max-width:640px){.nav a[data-nav="packages"]{display:none}}
   @media(max-width:540px){.nav a[data-nav="process"]{display:none}}
-  @media(max-width:440px){.nav a[data-nav="work"]{display:none}}
 
   /* ---------- language switch ---------- */
   .lang{
@@ -271,71 +270,6 @@
   }
   .role span{color:var(--mist);font-size:13.5px;line-height:1.5}
 
-  /* ---------- portfolio ---------- */
-  .reels{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:start}
-  .reel{
-    position:relative;
-    aspect-ratio:9/16;                 /* вертикальний за замовчуванням */
-    background:var(--panel);
-    border:1px solid var(--line-soft);
-    border-radius:3px;
-    overflow:hidden;
-    transition:border-color .25s ease;
-  }
-  .reel--wide{grid-column:1/-1;aspect-ratio:16/9;order:-1}
-  @media(max-width:760px){
-    .reels{grid-template-columns:repeat(2,1fr)}
-  }
-  .reel:hover{border-color:var(--line)}
-  .reel video,.reel iframe{
-    position:absolute;inset:0;width:100%;height:100%;
-    border:0;object-fit:cover;background:#000;display:block;
-  }
-
-  .reel-cover{
-    position:absolute;inset:0;z-index:2;
-    border:0;padding:0;margin:0;
-    background:transparent;
-    cursor:pointer;
-    display:grid;place-items:center;
-    transition:opacity .35s ease,visibility .35s ease;
-  }
-  .reel.is-playing .reel-cover{opacity:0;visibility:hidden}
-  .reel-cover::before{
-    content:"";position:absolute;inset:0;
-    background:linear-gradient(180deg,rgba(12,13,16,.15) 0%,rgba(12,13,16,.72) 100%);
-  }
-  .reel-cover .play{
-    position:relative;
-    width:54px;height:54px;
-    border:1px solid rgba(238,240,243,.55);
-    border-radius:50%;
-    display:grid;place-items:center;
-    background:rgba(12,13,16,.35);
-    backdrop-filter:blur(3px);
-    transition:border-color .25s ease,background .25s ease,transform .25s ease;
-  }
-  .reel-cover:hover .play{border-color:#fff;background:rgba(12,13,16,.6);transform:scale(1.06)}
-  .reel-cover .play::after{
-    content:"";width:0;height:0;margin-left:4px;
-    border-left:12px solid var(--silver);
-    border-top:8px solid transparent;
-    border-bottom:8px solid transparent;
-  }
-  .reel-meta{
-    position:absolute;left:14px;right:14px;bottom:12px;z-index:3;
-    font-family:var(--mono);font-size:11px;letter-spacing:.12em;
-    color:var(--mist);text-transform:uppercase;
-    pointer-events:none;
-    transition:opacity .3s ease;
-  }
-  .reel.is-playing .reel-meta{opacity:0}
-  .reel-meta b{color:var(--silver);font-weight:400}
-
-  @media(prefers-reduced-motion:reduce){
-    .reel-cover:hover .play{transform:none}
-  }
-
   /* ---------- faq ---------- */
   .faq-list{display:grid;gap:0;border-top:1px solid var(--line-soft)}
   .faq-item{border-bottom:1px solid var(--line-soft)}
@@ -453,7 +387,6 @@
         <a href="#services" data-nav="services" data-i18n="nav.services">Services</a>
         <a href="#process" data-nav="process" data-i18n="nav.process">Process</a>
         <a href="#packages" data-nav="packages" data-i18n="nav.packages">Packages</a>
-        <a href="#work" data-nav="work" data-i18n="nav.work">Work</a>
         <a href="#career" data-nav="career" data-i18n="nav.career">Career</a>
         <a href="#contact" data-nav="contact" data-i18n="nav.contact">Contact</a>
       </nav>
@@ -476,7 +409,7 @@
       <p class="ai-badge"><span class="dot"></span><span data-i18n="hero.ai">Visuals made with generative AI</span></p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="#contact" data-i18n="hero.cta1">Order a video</a>
-        <a class="btn btn-ghost" href="#work" data-i18n="hero.cta2">See our work</a>
+        <a class="btn btn-ghost" href="#packages" data-i18n="hero.cta2">See packages</a>
       </div>
     </div>
     <div class="hero-figure">
@@ -650,51 +583,6 @@
     <p class="note" data-i18n="packages.note">We take on a limited number of projects at a time, so every engagement is scoped and quoted after a short brief. Payment: 50% upfront, 50% on approval.</p>
   </section>
 
-  <!-- PORTFOLIO -->
-  <section id="work" class="wrap">
-    <div class="sec-head reveal">
-      <h2 data-i18n="work.h2">Work</h2>
-      <p data-i18n="work.sub">A few recent videos.</p>
-    </div>
-    <div class="reels">
-
-      <!-- Файли лежать у папці video/ поруч з index.html.
-           Вертикальні ролики — class="reel".
-           Горизонтальний — class="reel reel--wide" (широка картка 16:9 нагорі).
-           Щоб додати ще ролик — скопіюйте будь-який блок <article> і змініть шляхи.
-
-           ОБКЛАДИНКИ (poster):
-           вертикальні — 1080×1920 JPG, горизонтальні — 1920×1080 JPG,
-           до ~250 КБ, назва файлу літера в літеру як у poster="..." (регістр важливий!). -->
-
-      <article class="reel reveal">
-        <video src="video/reel-1.mp4" poster="video/reel-1.jpg" preload="none" playsinline></video>
-        <button class="reel-cover" type="button" data-i18n-aria="work.play1" aria-label="Play: talking avatar ad"><span class="play"></span></button>
-        <p class="reel-meta" data-i18n="work.meta1"><b>Talking avatar</b> · Ad creative</p>
-      </article>
-
-      <article class="reel reveal">
-        <video src="video/reel-2.mp4" poster="video/reel-2.jpg" preload="none" playsinline></video>
-        <button class="reel-cover" type="button" data-i18n-aria="work.play2" aria-label="Play: animated short"><span class="play"></span></button>
-        <p class="reel-meta" data-i18n="work.meta2"><b>Animated short</b> · Cartoon</p>
-      </article>
-
-      <article class="reel reveal">
-        <video src="video/reel-3.mp4" poster="video/reel-3.jpg" preload="none" playsinline></video>
-        <button class="reel-cover" type="button" data-i18n-aria="work.play3" aria-label="Play: cartoon style ad"><span class="play"></span></button>
-        <p class="reel-meta" data-i18n="work.meta3"><b>Cartoon style</b> · Ad creative</p>
-      </article>
-
-      <article class="reel reel--wide reveal">
-        <video src="video/reel-4.mp4" poster="video/reel-4.jpg" preload="none" playsinline></video>
-        <button class="reel-cover" type="button" data-i18n-aria="work.play4" aria-label="Play: Nike concept spot"><span class="play"></span></button>
-        <p class="reel-meta" data-i18n="work.meta4"><b>Nike</b> · Concept spot</p>
-      </article>
-
-    </div>
-    <p class="note reveal" data-i18n="work.note">Every video on this page was created with generative AI.</p>
-  </section>
-
   <!-- FAQ -->
   <section id="faq" class="wrap">
     <div class="sec-head reveal">
@@ -828,7 +716,6 @@ var I18N = {
     "nav.services":"Services",
     "nav.process":"Process",
     "nav.packages":"Packages",
-    "nav.work":"Work",
     "nav.career":"Career",
     "nav.contact":"Contact",
 
@@ -836,7 +723,7 @@ var I18N = {
     "hero.lede":"Video for brands, studios and agencies that can't afford to look cheap: <b>idea, script, AI generation, edit, sound</b> — handled end to end.",
     "hero.ai":"Visuals made with generative AI",
     "hero.cta1":"Order a video",
-    "hero.cta2":"See our work",
+    "hero.cta2":"See packages",
     "hero.canvas":"BLACK PAW logo: a paw print dissolving into particles",
 
     "clients.h2":"Trusted by",
@@ -890,18 +777,6 @@ var I18N = {
     "packages.t3.i5":"Timeline built around your launch",
     "packages.t3.btn":"Talk to us",
     "packages.note":"We take on a limited number of projects at a time, so every engagement is scoped and quoted after a short brief. Payment: 50% upfront, 50% on approval.",
-
-    "work.h2":"Work",
-    "work.sub":"A few recent videos.",
-    "work.meta1":"<b>Talking avatar</b> · Ad creative",
-    "work.meta2":"<b>Animated short</b> · Cartoon",
-    "work.meta3":"<b>Cartoon style</b> · Ad creative",
-    "work.meta4":"<b>Nike</b> · Concept spot",
-    "work.play1":"Play: talking avatar ad",
-    "work.play2":"Play: animated short",
-    "work.play3":"Play: cartoon style ad",
-    "work.play4":"Play: Nike concept spot",
-    "work.note":"Every video on this page was created with generative AI.",
 
     "faq.h2":"FAQ",
     "faq.sub":"The things people ask us most.",
@@ -957,7 +832,6 @@ var I18N = {
     "nav.services":"Послуги",
     "nav.process":"Процес",
     "nav.packages":"Пакети",
-    "nav.work":"Роботи",
     "nav.career":"Кар'єра",
     "nav.contact":"Контакти",
 
@@ -965,7 +839,7 @@ var I18N = {
     "hero.lede":"Відео для брендів, студій і агенцій, яким не можна виглядати дешево: <b>ідея, сценарій, генерація, монтаж, звук</b> — під ключ.",
     "hero.ai":"Візуал створюємо нейромережами",
     "hero.cta1":"Замовити ролик",
-    "hero.cta2":"Подивитись роботи",
+    "hero.cta2":"Дивитись пакети",
     "hero.canvas":"Логотип BLACK PAW: відбиток лапи, що розсипається на частинки",
 
     "clients.h2":"Нам довіряють",
@@ -1019,18 +893,6 @@ var I18N = {
     "packages.t3.i5":"Строки під ваш запуск",
     "packages.t3.btn":"Обговорити",
     "packages.note":"Ми беремо обмежену кількість проєктів одночасно, тому кожен оцінюємо після короткого брифу. Оплата: 50% на старті, 50% після затвердження.",
-
-    "work.h2":"Роботи",
-    "work.sub":"Кілька останніх роликів.",
-    "work.meta1":"<b>AI-ведучий</b> · Рекламний креатив",
-    "work.meta2":"<b>Мультфільм</b> · Анімація",
-    "work.meta3":"<b>Мультстиль</b> · Рекламний креатив",
-    "work.meta4":"<b>Nike</b> · Концепт-ролик",
-    "work.play1":"Відтворити: рекламний ролик з AI-ведучим",
-    "work.play2":"Відтворити: мультфільм",
-    "work.play3":"Відтворити: рекламний ролик у мультстилі",
-    "work.play4":"Відтворити: концепт-ролик Nike",
-    "work.note":"Усі ролики на цій сторінці створені за допомогою генеративних нейромереж.",
 
     "faq.h2":"Питання",
     "faq.sub":"Коротко про те, що питають найчастіше.",
@@ -1176,31 +1038,6 @@ var I18N = {
   document.querySelectorAll('.reveal').forEach(function(el, i){
     el.style.transitionDelay = (i % 4) * 70 + 'ms';
     io.observe(el);
-  });
-
-  /* ---------- reels: орієнтація + відтворення ---------- */
-  var reels = Array.prototype.slice.call(document.querySelectorAll('.reel'));
-  reels.forEach(function(reel){
-    var video = reel.querySelector('video');
-    var cover = reel.querySelector('.reel-cover');
-    if(!video || !cover) return;
-
-    cover.addEventListener('click', function(){
-      reels.forEach(function(other){
-        if(other === reel) return;
-        var v = other.querySelector('video');
-        if(v && !v.paused){ v.pause(); other.classList.remove('is-playing'); }
-      });
-      reel.classList.add('is-playing');
-      video.controls = true;
-      video.play();
-    });
-
-    video.addEventListener('ended', function(){
-      reel.classList.remove('is-playing');
-      video.controls = false;
-      video.currentTime = 0;
-    });
   });
 
   /* ---------- particle logo ---------- */
